@@ -1,0 +1,10 @@
+drop table tracking
+drop table last_visit
+drop table location_info
+drop table vehicle
+drop table delivered
+drop table bill
+drop table package
+drop table customer
+drop table shipment
+drop table shipper

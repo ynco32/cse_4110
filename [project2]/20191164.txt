@@ -1,0 +1,39 @@
+create table shipper(shipper_id varchar(6), name varchar(20) not null, number varchar(20) not null, account_number varchar(30) not null, primary key (shipper_id))
+insert into shipper values ("S11111", "Lee Sohee", "010-1234-5678", "123-456-123456")
+
+create table shipment(shipment_id varchar(6), recipient_name varchar(20) not null, recipient_number varchar(20) not null, recipient_address varchar(255) not null, primary key(shipment_id))
+alter table shipment add (depart_time DATETIME not null, promised_time DATETIME not null, delivered_time DATETIME not null)
+insert into shipment value("SP1233", "Song So her", "010-1111-1111", "Daejeon, See-gu, Duncan-dong", "2022-01-22 09:23:00", "2022-01-24 20:00:00", "2022-01-24 16:13:30")
+
+
+create table customer(customer_id varchar(6), name varchar(20) not null, address varchar(255) not null, last_year_frequency int not null, primary key(customer_id))
+alter table customer add ( last_year_total_charge int not null, shipper_id varchar(6))    
+alter table customer add constraint fk_shipper_id foreign key (shipper_id) references shipper (shipper_id) on delete set null
+
+
+insert into customer values ("C11012", "Lee Min Ho", "Seoul, Sogangdaegil 16, Sinsu-dong", 5, 500000, "S11111")
+create table package(package_id varchar(6), type varchar(20) not null, weight int not null, timeliness varchar(20) not null, content varchar(20) not null, value int not null, service_type varchar(30) not null, charge int not null, customer_id varchar(6), primary key(package_id), foreign key (customer_id) references customer (customer_id) on delete set null);
+insert into package values("P11111", "flat envelope", 3, "overnight", "Computer", 100000, "A", 4000, "C11012")
+create table bill(bill_id varchar(6), package_id varchar(6) not null, payment_method varchar(20) not null, bill_type varchar(20) not null, issued_date DATE not null,  total_charge int not null, customer_id varchar(6), primary key(bill_id), foreign key (customer_id) references customer (customer_id) on delete set null)
+insert into bill values ("BC0988","P11111", "Credit Card", "Simple", "2023-02-01", 80000, "C11012")
+create table delivered(package_id varchar(6), dropped_time DATETIME, check_prepaid boolean, shipment_id varchar(6), primary key(package_id), foreign key (package_id) references package (package_id) on delete cascade, foreign key (shipment_id) references shipment (shipment_id) on delete set null)
+insert into delivered values("P11111", "2022-01-24 16:13:30", true, "SP1233")
+create table vehicle (vehicle_type varchar(20), serial_number varchar(4), driver varchar(20) not null, driver_number varchar(20) not null, primary key(vehicle_type, serial_number));
+insert into vehicle values ("truck", "1234", "Kim Ki Jun", "010-9999-8888")
+create table location_info(laddress varchar(255), type varchar(20) not null, name varchar(20) not null, number varchar(20) not null, primary key (laddress))
+insert into location_info value ("Okcheon, Kwa-gun, lim-eup", "Hub", "Okcheon Hub", "041-222-1111")
+create table last_visit(laddress varchar(255), last_visited_address varchar(255), primary key(laddress, last_visited_address), foreign key (laddress) references location_info (laddress) on delete cascade)
+insert into last_visit value("Okcheon, Kwa-gun, lim-eup", "Daejeon Trefoil apartment")
+create table tracking(tracking_id varchar(6), status varchar(20) not null, tracked_time DATE not null, shipment_id varchar(6), vehicle_type varchar(20), serial_number varchar(4), laddress varchar(20), foreign key (shipment_id) references shipment (shipment_id), foreign key (vehicle_type, serial_number) references vehicle (vehicle_type, serial_number) on delete set null, foreign key (laddress) references location_info (laddress) on delete set null);
+insert into tracking value ("T12333", "done", "2022-01-24", "SP1233", "truck", "1234", "Okcheon, kya_gun, lim-eup");
+
+
+alter table shipment add (depart_time DATETIME not null, promised_time DATETIME not null, delivered_time DATETIME not null)    
+alter table shipment add constraint fk_ship_pac foreign key (package_id) references package(package_id) on delete set null
+alter table shipment add constraint fk_ship_serv foreign key (service_id) references service(service_id) on delete set null
+alter table shipment add constraint fk_ship_cust foreign key (customer_id) references customer(customer_id) on delete set null
+alter table tracking add constraint fk_trk_ship foreign key (shipment_id) references shipment(shipment_id) on delete cascade
+
+
+
+

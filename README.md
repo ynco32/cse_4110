@@ -7,20 +7,20 @@
 Goal: The goal of this project is to provide a realistic experience in the conceptual design, logical design, physical design, query processing implementation and maintenance of a small relational database.
 
 > The application is a package delivery company (e. FedEx, UPS, DHL, CJ
-Log istics The company needs to keep track of packages shipped and their
+Logistics The company needs to keep track of packages shipped and their
 customers. To find out more about this application, think about any experiences
 you may have had shipping packages and receiving packages, and browse
-shippers’ web sites.
-In our hypoth etical company, the manager assigned to solicit database
+shippers’ websites.
+In our hypothetical company, the manager assigned to solicit database
 design proposals is not very computer literate and is unable to provide a very
 detailed specification.
 
 
 #### Project1
 1. E-R Model
-   Construct an E-R diagram rpresenting the conceptual design of the database.
+   Construct an E-R diagram representing the conceptual design of the database.
 2. Relational Schema Diagram
-   After creating an E-R model, reducing it into Schema diagram. Create the schema diagram in ERwin Data Modeler.
+   After creating an E-R model, reduce it into Schema diagram. Create the schema diagram in ERwin Data Modeler.
 
 
 #### Project2
@@ -28,7 +28,7 @@ detailed specification.
    Check the logical schema from project1 and decompose your logical Schema to BCNF form if they are not.
 2. Physical Schema Diagram
    Create the physical schema diagram using Erwin.
-3. Quries
+3. Queries
 > Type1 Assume truck X is destroyed in a crash  
 > [User input for query: truck number]
 >> Type1-1) Find all customers who had a package on the truck at the time of the crash  

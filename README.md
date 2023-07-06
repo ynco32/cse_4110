@@ -2,6 +2,8 @@
 
 서강대학교 컴퓨터공학과 Database System 2023년 1학기
 
+<img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/></a>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=MySQL&logoColor=white" />
 
 ## Package Delivery System
 Goal: The goal of this project is to provide a realistic experience in the conceptual design, logical design, physical design, query processing implementation and maintenance of a small relational database.
